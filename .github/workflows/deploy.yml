@@ -19,4 +19,4 @@ jobs:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
       - name: Run deploy script on Synology NAS
-        run: ssh -o StrictHostKeyChecking=no your-username@your-nas-tailscale-ip 'bash -s' < /path/to/deploy.sh
+        run: ssh -o StrictHostKeyChecking=no steve@100.66.159.81 'bash -s' < /path/to/deploy.sh
