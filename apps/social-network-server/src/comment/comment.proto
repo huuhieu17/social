@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+                 package comment;
+service CommentService {
+ rpc createComment (CommentCreateInput) returns (Comment) {}
+rpc comments (findManyParams) returns (stream Comment) {}
+rpc comment (CommentWhereUniqueInput) returns (Comment) {}
+rpc updateComment (CommentUpdateInput) returns (Comment) {}
+rpc deleteComment (CommentWhereUniqueInput) returns (Comment) {} 
+ }
+message CommentCreateInput {
+string createdAt = 1;
+string id = 2;
+string updatedAt = 3;
+};
+message Comment {
+string createdAt = 1;
+string id = 2;
+string updatedAt = 3;
+};
+message CommentWhereUniqueInput {
+string createdAt = 1;
+string id = 2;
+string updatedAt = 3;
+};
+message CommentUpdateInput {
+string createdAt = 1;
+string id = 2;
+string updatedAt = 3;
+};
+message findManyParams {
+
+};

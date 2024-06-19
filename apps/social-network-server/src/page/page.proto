@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+                 package page;
+service PageService {
+ rpc createPage (PageCreateInput) returns (Page) {}
+rpc pages (findManyParams) returns (stream Page) {}
+rpc page (PageWhereUniqueInput) returns (Page) {}
+rpc updatePage (PageUpdateInput) returns (Page) {}
+rpc deletePage (PageWhereUniqueInput) returns (Page) {} 
+ }
+message PageCreateInput {
+string createdAt = 1;
+string id = 2;
+string updatedAt = 3;
+};
+message Page {
+string createdAt = 1;
+string id = 2;
+string updatedAt = 3;
+};
+message PageWhereUniqueInput {
+string createdAt = 1;
+string id = 2;
+string updatedAt = 3;
+};
+message PageUpdateInput {
+string createdAt = 1;
+string id = 2;
+string updatedAt = 3;
+};
+message findManyParams {
+
+};

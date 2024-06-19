@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+                 package group;
+service GroupService {
+ rpc createGroup (GroupCreateInput) returns (Group) {}
+rpc groups (findManyParams) returns (stream Group) {}
+rpc group (GroupWhereUniqueInput) returns (Group) {}
+rpc updateGroup (GroupUpdateInput) returns (Group) {}
+rpc deleteGroup (GroupWhereUniqueInput) returns (Group) {} 
+ }
+message GroupCreateInput {
+string createdAt = 1;
+string id = 2;
+string updatedAt = 3;
+};
+message Group {
+string createdAt = 1;
+string id = 2;
+string updatedAt = 3;
+};
+message GroupWhereUniqueInput {
+string createdAt = 1;
+string id = 2;
+string updatedAt = 3;
+};
+message GroupUpdateInput {
+string createdAt = 1;
+string id = 2;
+string updatedAt = 3;
+};
+message findManyParams {
+
+};
