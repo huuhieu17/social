@@ -1,6 +1,5 @@
 name: Deploy to Synology NAS
-env:
-    SSH_PRIVATE_KEY: ${{secrets.SSH_PRIVATE_KEY}}
+
 on:
   push:
     branches:
@@ -14,10 +13,19 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Decode SSH Key
+        run: echo "${{ secrets.SSH_PRIVATE_KEY }}" | base64 -d > key
+        shell: bash
+      
       - name: Set up SSH
         uses: webfactory/ssh-agent@v0.5.3
         with:
-          ssh-private-key: "$SSH_PRIVATE_KEY"
+          ssh-private-key: key
 
       - name: Run deploy script on Synology NAS
-        run: ssh -o StrictHostKeyChecking=no steve@100.66.159.81 'bash -s' < /path/to/deploy.sh
+        run: ssh -o StrictHostKeyChecking=no steve@100.66.159.81 'bash -s' < /volume1/docker/social-network/deploy.sh
+        shell: bash
+
+      - name: Clean up Key
+        run: rm key
+        shell: bash
