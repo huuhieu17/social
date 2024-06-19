@@ -1,5 +1,6 @@
 name: Deploy to Synology NAS
-
+env:
+    SSH_PRIVATE_KEY: ${{secrets.SSH_PRIVATE_KEY}}
 on:
   push:
     branches:
@@ -16,7 +17,7 @@ jobs:
       - name: Set up SSH
         uses: webfactory/ssh-agent@v0.5.3
         with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+          ssh-private-key: "$SSH_PRIVATE_KEY"
 
       - name: Run deploy script on Synology NAS
         run: ssh -o StrictHostKeyChecking=no steve@100.66.159.81 'bash -s' < /path/to/deploy.sh
