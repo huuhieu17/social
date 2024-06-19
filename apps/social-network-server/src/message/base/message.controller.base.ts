@@ -28,6 +28,9 @@ export class MessageControllerBase {
   constructor(protected readonly service: MessageService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: Message })
+  @swagger.ApiBody({
+    type: MessageCreateInput,
+  })
   async createMessage(
     @common.Body() data: MessageCreateInput
   ): Promise<Message> {
@@ -81,6 +84,9 @@ export class MessageControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: Message })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
+  @swagger.ApiBody({
+    type: MessageUpdateInput,
+  })
   async updateMessage(
     @common.Param() params: MessageWhereUniqueInput,
     @common.Body() data: MessageUpdateInput

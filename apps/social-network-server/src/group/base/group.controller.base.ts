@@ -28,6 +28,9 @@ export class GroupControllerBase {
   constructor(protected readonly service: GroupService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: Group })
+  @swagger.ApiBody({
+    type: GroupCreateInput,
+  })
   async createGroup(@common.Body() data: GroupCreateInput): Promise<Group> {
     return await this.service.createGroup({
       data: data,
@@ -79,6 +82,9 @@ export class GroupControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: Group })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
+  @swagger.ApiBody({
+    type: GroupUpdateInput,
+  })
   async updateGroup(
     @common.Param() params: GroupWhereUniqueInput,
     @common.Body() data: GroupUpdateInput

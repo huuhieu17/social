@@ -27,6 +27,9 @@ export class PostControllerBase {
   constructor(protected readonly service: PostService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: Post })
+  @swagger.ApiBody({
+    type: PostCreateInput,
+  })
   async createPost(@common.Body() data: PostCreateInput): Promise<Post> {
     return await this.service.createPost({
       data: data,
@@ -78,6 +81,9 @@ export class PostControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: Post })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
+  @swagger.ApiBody({
+    type: PostUpdateInput,
+  })
   async updatePost(
     @common.Param() params: PostWhereUniqueInput,
     @common.Body() data: PostUpdateInput

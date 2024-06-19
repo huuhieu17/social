@@ -28,6 +28,9 @@ export class LikeControllerBase {
   constructor(protected readonly service: LikeService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: Like })
+  @swagger.ApiBody({
+    type: LikeCreateInput,
+  })
   async createLike(@common.Body() data: LikeCreateInput): Promise<Like> {
     return await this.service.createLike({
       data: data,
@@ -79,6 +82,9 @@ export class LikeControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: Like })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
+  @swagger.ApiBody({
+    type: LikeUpdateInput,
+  })
   async updateLike(
     @common.Param() params: LikeWhereUniqueInput,
     @common.Body() data: LikeUpdateInput

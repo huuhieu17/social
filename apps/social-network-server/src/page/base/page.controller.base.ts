@@ -28,6 +28,9 @@ export class PageControllerBase {
   constructor(protected readonly service: PageService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: Page })
+  @swagger.ApiBody({
+    type: PageCreateInput,
+  })
   async createPage(@common.Body() data: PageCreateInput): Promise<Page> {
     return await this.service.createPage({
       data: data,
@@ -79,6 +82,9 @@ export class PageControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: Page })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
+  @swagger.ApiBody({
+    type: PageUpdateInput,
+  })
   async updatePage(
     @common.Param() params: PageWhereUniqueInput,
     @common.Body() data: PageUpdateInput
